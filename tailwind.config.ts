@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -15,6 +15,11 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
-}
-export default config
+  plugins: [require('daisyui')],
+  daisyui: {
+    themes: ['light', 'dark'],
+    base: true,
+    styled: true,
+  },
+};
+export default config;
