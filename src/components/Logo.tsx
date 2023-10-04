@@ -1,16 +1,16 @@
 import React from 'react'
 type Props = {
-  className?: string;
-  height?: number;
-  width?: number;
+	className?: string;
+	height?: number;
+	width?: number;
 };
 
 export const Logo = ({ className = '', height = 50, width = 50 }: Props) => {
-  return (
-    <svg className={className} height={height} widths={width} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-      width="100%" viewBox="0 0 1024 1024" enable-background="new 0 0 1024 1024">
-      <path fill="currentColor" opacity="1.000000" stroke="none"
-        d="
+	return (
+		<svg className={className} height={height} widths={width} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+			width="100%" viewBox="0 0 1024 1024" enableBackground="new 0 0 1024 1024">
+			<path fill="currentColor" opacity="1.000000" stroke="none"
+				d="
 M222.882233,737.000000 
 	C222.875763,666.001770 222.870773,595.503601 222.861511,525.005371 
 	C222.860199,514.961365 221.280319,512.989258 211.444580,510.672668 
@@ -100,8 +100,8 @@ M665.015869,543.609985
 	C680.603271,543.042297 677.755371,540.825012 670.678833,542.308289 
 	C669.051636,542.649414 667.435608,543.043518 665.015869,543.609985 
 z"/>
-      <path fill="currentColor" opacity="1.000000" stroke="none"
-        d="
+			<path fill="currentColor" opacity="1.000000" stroke="none"
+				d="
 M531.885376,368.166199 
 	C506.031616,347.748810 490.383820,322.017273 486.466248,289.236969 
 	C479.598328,231.769974 515.518433,176.282898 572.797180,163.333817 
@@ -123,8 +123,8 @@ M612.306152,306.807739
 	C573.978210,335.926849 586.349243,335.034760 595.368225,324.763519 
 	C600.638428,318.761627 606.317139,313.118347 612.306152,306.807739 
 z"/>
-      <path fill="currentColor" opacity="1.000000" stroke="none"
-        d="
+			<path fill="currentColor" opacity="1.000000" stroke="none"
+				d="
 M328.983429,335.965088 
 	C315.114807,318.053192 308.527161,298.042786 308.713684,275.795654 
 	C309.058350,234.682831 339.378967,199.532059 380.128174,193.886414 
@@ -145,6 +145,6 @@ M385.131683,323.332458
 	C370.363434,233.338882 345.628784,259.926392 353.393768,287.839630 
 	C358.022888,304.480042 369.289459,315.533752 385.131683,323.332458 
 z"/>
-    </svg>
-  )
+		</svg>
+	)
 };
