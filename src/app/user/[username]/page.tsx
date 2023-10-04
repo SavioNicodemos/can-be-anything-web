@@ -1,4 +1,5 @@
 import { PaginatedResponseDTO } from "@/@dtos/ResponseDTO";
+import WishListCard from "@/components/WishListCard";
 import Link from "next/link";
 
 type WishList = {
@@ -32,17 +33,19 @@ async function UserProfile({ params, searchParams }: URLParams) {
   const wishLists = jsonResponse.data.data;
 
   return (
-    <main>
+    <>
       <p>Wish Lists</p>
-      <ul>
+      <div className="grid grid-cols-3 gap-x-4 gap-y-4">
         {wishLists.map((wishList) => (
-          <li key={wishList.id}>
-            <Link href={`/user/${userName}/${wishList.slug}`}>
-              {wishList.name} - {wishList.products_count} products
-            </Link>
-          </li>
+          <WishListCard
+            key={wishList.id}
+            name={wishList.name}
+            description={wishList.slug}
+            images={['https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg']}
+            href={`/user/${userName}/${wishList.slug}`}
+          />
         ))}
-      </ul>
+      </div>
 
       <div className="join">
         {jsonResponse.data.links.filter(el => !isNaN(Number(el.label))).map((link) => (
@@ -55,7 +58,7 @@ async function UserProfile({ params, searchParams }: URLParams) {
           </a>
         ))}
       </div>
-    </main>
+    </>
   )
 };
 
