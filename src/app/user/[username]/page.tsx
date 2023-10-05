@@ -1,6 +1,10 @@
 import { PaginatedResponseDTO } from "@/@dtos/ResponseDTO";
+import api from "@/api";
 import WishListCard from "@/components/WishListCard";
-import Link from "next/link";
+import { ApiError } from "@/utils/errors/ApiError";
+import { notFound } from "next/navigation";
+
+export const revalidate = 0;
 
 type WishList = {
   id: string;
@@ -24,13 +28,15 @@ async function UserProfile({ params, searchParams }: URLParams) {
   const userName = params.username;
   const pageNumber = searchParams.page ? Number(searchParams.page) : 1;
 
-  const response = await fetch(
-    `http://localhost:8000/api/v1/users/${userName}/wish-lists?page=${pageNumber}`,
-    { next: { revalidate: 0 } }
-  );
+  const response: PaginatedResponseDTO<WishList> = await api.get(`users/${userName}/wish-lists?page=${pageNumber}`)
+    .catch(e => {
+      if (e instanceof ApiError) {
+        if (e.statusCode === 404) return notFound();
+        else throw e;
+      }
+    });
 
-  const jsonResponse: PaginatedResponseDTO<WishList> = await response.json();
-  const wishLists = jsonResponse.data.data;
+  const wishLists = response.data.data;
 
   return (
     <>
@@ -48,7 +54,7 @@ async function UserProfile({ params, searchParams }: URLParams) {
       </div>
 
       <div className="join">
-        {jsonResponse.data.links.filter(el => !isNaN(Number(el.label))).map((link) => (
+        {response.data.links.filter(el => !isNaN(Number(el.label))).map((link) => (
           <a
             key={link.label}
             href={`/user/${userName}?page=${link.label}`}
