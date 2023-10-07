@@ -49,7 +49,6 @@ async function UserProfile({ params, searchParams }: URLParams) {
             key={wishList.id}
             name={wishList.name}
             description={wishList.slug}
-            images={['https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg']}
             href={`/user/${userName}/${wishList.slug}`}
           />
         ))}

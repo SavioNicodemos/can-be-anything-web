@@ -4,19 +4,12 @@ import ImageCarousel from './ImageCarousel';
 import Skeleton from './Skeleton';
 
 type Props =
-  | { loading: true; name?: undefined; description?: undefined; images?: undefined; href?: undefined; }
-  | { loading?: false; name: string; description: string; images: string[]; href: string; }
+  | { loading: true; name?: undefined; description?: undefined; href?: undefined; }
+  | { loading?: false; name: string; description: string; href: string; }
 
-const WishListCard = ({ name, description, images, href = '', loading = false }: Props) => {
+const WishListCard = ({ name, description, href = '', loading = false }: Props) => {
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
-      <figure>
-        {loading ? (
-          <Skeleton.Image height={230} />
-        ) : (
-          <ImageCarousel images={images!} />
-        )}
-      </figure>
       <div className="card-body">
         {loading ? (
           <>
