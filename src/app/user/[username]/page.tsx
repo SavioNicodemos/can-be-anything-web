@@ -39,9 +39,11 @@ async function UserProfile({ params, searchParams }: URLParams) {
   const wishLists = response.data.data;
 
   return (
-    <>
-      <p>Wish Lists</p>
-      <div className="grid grid-cols-3 gap-x-4 gap-y-4">
+    <div className="flex items-center flex-col">
+      <h1 className="text-2xl pt-2 pb-2 font-bold self-center md:self-start">
+        Wish Lists
+      </h1>
+      <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-x-4 gap-y-4">
         {wishLists.map((wishList) => (
           <WishListCard
             key={wishList.id}
@@ -53,7 +55,7 @@ async function UserProfile({ params, searchParams }: URLParams) {
         ))}
       </div>
 
-      <div className="join">
+      <div className="join pt-4 pb-4">
         {response.data.links.filter(el => !isNaN(Number(el.label))).map((link) => (
           <a
             key={link.label}
@@ -64,7 +66,7 @@ async function UserProfile({ params, searchParams }: URLParams) {
           </a>
         ))}
       </div>
-    </>
+    </div>
   )
 };
 
