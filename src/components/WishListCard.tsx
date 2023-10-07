@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import React from 'react'
-import ImageCarousel from './ImageCarousel';
 import Skeleton from './Skeleton';
 
 type Props =
@@ -9,7 +8,7 @@ type Props =
 
 const WishListCard = ({ name, description, href = '', loading = false }: Props) => {
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
+    <div className="card w-96 bg-base-100 shadow-xl shadow-base-300 border-2 border-base-200">
       <div className="card-body">
         {loading ? (
           <>
@@ -24,7 +23,7 @@ const WishListCard = ({ name, description, href = '', loading = false }: Props) 
         )}
         <div className="card-actions justify-end">
           <Link href={href}>
-            <button className='btn btn-primary'>
+            <button className='btn btn-primary text-white'>
               Check Wishlist
             </button>
           </Link>
