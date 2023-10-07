@@ -30,11 +30,11 @@ const WishListCard = ({ name, description, images, href = '', loading = false }:
           </>
         )}
         <div className="card-actions justify-end">
-          <button className='btn btn-primary'>
-            <Link href={href}>
+          <Link href={href}>
+            <button className='btn btn-primary'>
               Check Wishlist
-            </Link>
-          </button>
+            </button>
+          </Link>
         </div>
       </div>
     </div>

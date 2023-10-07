@@ -14,7 +14,6 @@ async function request(
 ) {
   const cleanedUrl = startWithSlash(url);
 
-  console.log('antes');
   const response = await fetch(BASE_URL + cleanedUrl, {
     method,
     body,
