@@ -4,7 +4,7 @@ interface LaravelPaginationLinks {
   active: boolean;
 }
 
-export type LaravelPaginationResponse<T> = {
+interface LaravelPaginationResponse<T> {
   current_page: number;
   data: T[];
   first_page_url: string;
@@ -18,7 +18,7 @@ export type LaravelPaginationResponse<T> = {
   prev_page_url: string | null;
   to: number;
   total: number;
-};
+}
 
 export type ResponseDTO<T> = {
   data: T;
