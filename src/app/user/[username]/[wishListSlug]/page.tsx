@@ -1,9 +1,13 @@
+import { ProductDTO } from "@/@dtos/ProductDTO";
+import { PaginatedResponseDTO } from "@/@dtos/ResponseDTO";
+import api from "@/api";
+import PageTitle from "@/components/layouts/PageTitle";
+import ComponentsGrid from "@/components/layouts/ComponentsGrid";
+import { ApiError } from "@/utils/errors/ApiError";
+import { notFound } from "next/navigation";
+import ProductsCard from "@/components/ProductsCard";
+import { NoGift } from "@/components/svgs/NoGift";
 import Link from "next/link";
-
-type Product = {
-  id: string;
-  name: string;
-};
 
 type URLParams = {
   params: {
@@ -15,30 +19,49 @@ type URLParams = {
   }
 };
 
-async function WishListProducts({ params, searchParams }: URLParams) {
-  const response = await fetch(
-    `http://localhost:8000/api/v1/users/${params.username}/wish-lists/${params.wishListSlug}/products`,
-    { next: { revalidate: 10 } }
-  );
+export const revalidate = 0;
 
-  const jsonResponse = await response.json();
-  const data = jsonResponse.data.data
+async function WishListProducts({ params, searchParams }: URLParams) {
+  const { username, wishListSlug } = params;
+
+  const response: PaginatedResponseDTO<ProductDTO> = await api.get(
+    `users/${username}/wish-lists/${wishListSlug}/products`
+  ).catch(e => {
+    if (e instanceof ApiError) {
+      if (e.statusCode === 404) return notFound();
+      else throw e;
+    }
+  });
+
+  const products = response.data.data;
 
   return (
-    <main>
-      <h1>Hello {params.username}</h1>
+    <>
+      <PageTitle>
+        Products
+      </PageTitle>
 
-      <p>Wish Lists</p>
-      <ul>
-        {data.map((product: Product) => (
-          <li key={product.id}>
-            <Link href={`/${params.username}/${product.name}`}>
-              {product.name} - product
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </main>
+      <ComponentsGrid>
+        {products.length > 0 ? (
+          products.map((product) => (
+            <ProductsCard key={product.id} product={product} />
+          ))
+        ) : (
+          <>
+            <div /> {/* Placeholder for the first position */}
+            <div className="flex flex-col flex-1 align-center justify-center">
+              <NoGift height={350} />
+              <p className="text-center">
+                This wish list has no products yet.
+              </p>
+              <Link href={`/user/${username}`} className="btn btn-primary mt-8" >
+                Back to profile
+              </Link>
+            </div>
+          </>
+        )}
+      </ComponentsGrid>
+    </>
   )
 };
 
