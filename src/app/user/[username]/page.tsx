@@ -1,6 +1,8 @@
 import { PaginatedResponseDTO } from "@/@dtos/ResponseDTO";
 import api from "@/api";
+import PageTitle from "@/components/layouts/PageTitle";
 import WishListCard from "@/components/WishListCard";
+import ComponentsGrid from "@/components/layouts/ComponentsGrid";
 import { ApiError } from "@/utils/errors/ApiError";
 import { notFound } from "next/navigation";
 
@@ -40,10 +42,11 @@ async function UserProfile({ params, searchParams }: URLParams) {
 
   return (
     <div className="flex items-center flex-col">
-      <h1 className="text-2xl pt-2 pb-2 font-bold self-center md:self-start">
+      <PageTitle>
         Wish Lists
-      </h1>
-      <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-x-4 gap-y-4">
+      </PageTitle>
+
+      <ComponentsGrid>
         {wishLists.map((wishList) => (
           <WishListCard
             key={wishList.id}
@@ -52,7 +55,7 @@ async function UserProfile({ params, searchParams }: URLParams) {
             href={`/user/${userName}/${wishList.slug}`}
           />
         ))}
-      </div>
+      </ComponentsGrid>
 
       <div className="join pt-4 pb-4">
         {response.data.links.filter(el => !isNaN(Number(el.label))).map((link) => (

@@ -17,10 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme='dark' className='h-screen'>
-      <body className={`${inter.className} h-screen flex flex-col`}>
+      <body className={`${inter.className} h-screen flex flex-col flex-1`}>
         <Header />
 
-        <main className='flex-1 max-w-10xl mx-auto'>
+        <main className='flex flex-1 w-full max-w-7xl mx-auto'>
           {children}
         </main>
 

@@ -1,13 +1,15 @@
 import WishListCard from '@/components/WishListCard'
+import ComponentsGrid from '@/components/layouts/ComponentsGrid'
+import PageTitle from '@/components/layouts/PageTitle'
 import React from 'react'
 
 const LoadingWishlists = () => {
   return (
     <>
-      <h1 className="text-2xl pt-2 pb-2 font-bold self-center md:self-start">
+      <PageTitle>
         Wish Lists
-      </h1>
-      <div className="grid grid-cols-3 gap-x-4 gap-y-4">
+      </PageTitle>
+      <ComponentsGrid>
         <WishListCard loading />
         <WishListCard loading />
         <WishListCard loading />
@@ -15,7 +17,7 @@ const LoadingWishlists = () => {
         <WishListCard loading />
         <WishListCard loading />
         <WishListCard loading />
-      </div>
+      </ComponentsGrid>
     </>
   )
 }
