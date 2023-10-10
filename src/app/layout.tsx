@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" data-theme='dark' className='h-screen'>
+    <html lang="en" data-theme='dark' className='h-screen' style={{ scrollbarGutter: 'stable' }}>
       <body className={`${inter.className} h-screen flex flex-col flex-1`}>
         <Header />
 
@@ -24,7 +24,7 @@ export default function RootLayout({
           {children}
         </main>
 
-        <footer className='self-center'>
+        <footer className='self-center mt-8'>
           <h2>Made with ❤️ by Nicodemos Santos</h2>
         </footer>
       </body>
