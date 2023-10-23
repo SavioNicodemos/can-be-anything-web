@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "^13.5.4",
+    "next": "^13.5.6",
     "react": "latest",
     "react-dom": "latest",
     "react-responsive-carousel": "^3.2.23",
@@ -20,7 +20,7 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
-    "daisyui": "^3.9.0",
+    "daisyui": "^3.9.3",
     "eslint": "latest",
     "eslint-config-next": "latest",
     "postcss": "latest",
