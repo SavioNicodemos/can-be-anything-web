@@ -1,6 +1,5 @@
+import Skeleton from '@/components/Skeleton';
 import Link from 'next/link';
-import React from 'react'
-import Skeleton from './Skeleton';
 
 type Props =
   | { loading: true; name?: undefined; description?: undefined; href?: undefined; }

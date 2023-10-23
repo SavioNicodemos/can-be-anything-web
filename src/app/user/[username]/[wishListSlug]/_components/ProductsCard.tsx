@@ -1,7 +1,6 @@
-import React from 'react'
-import Skeleton from './Skeleton';
 import { ProductDTO } from '@/@dtos/ProductDTO';
-import ImageCarousel from './ImageCarousel';
+import ImageCarousel from '@/components/ImageCarousel';
+import Skeleton from '@/components/Skeleton';
 import { convertDBToCurrency } from '@/utils/currency';
 
 type Props =
