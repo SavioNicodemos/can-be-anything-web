@@ -1,7 +1,6 @@
-import ProductsCard from '@/components/ProductsCard'
 import ComponentsGrid from '@/components/layouts/ComponentsGrid'
 import PageTitle from '@/components/layouts/PageTitle'
-import React from 'react'
+import ProductsCard from './_components/ProductsCard'
 
 const LoadProducts = () => {
   return (
