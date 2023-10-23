@@ -1,7 +1,6 @@
-import React from 'react'
+import { Logo } from '@/components/svgs/Logo'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Logo } from './Logo'
 
 const Header = () => {
   return (
@@ -68,4 +67,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Header;

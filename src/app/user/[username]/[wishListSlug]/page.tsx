@@ -1,13 +1,13 @@
 import { ProductDTO } from "@/@dtos/ProductDTO";
 import { PaginatedResponseDTO } from "@/@dtos/ResponseDTO";
 import api from "@/api";
-import PageTitle from "@/components/layouts/PageTitle";
 import ComponentsGrid from "@/components/layouts/ComponentsGrid";
-import { ApiError } from "@/utils/errors/ApiError";
-import { notFound } from "next/navigation";
-import ProductsCard from "@/components/ProductsCard";
+import PageTitle from "@/components/layouts/PageTitle";
 import { NoGift } from "@/components/svgs/NoGift";
+import { ApiError } from "@/utils/errors/ApiError";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import ProductsCard from "./_components/ProductsCard";
 
 type URLParams = {
   params: {

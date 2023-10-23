@@ -1,10 +1,11 @@
 import { PaginatedResponseDTO } from "@/@dtos/ResponseDTO";
 import api from "@/api";
-import PageTitle from "@/components/layouts/PageTitle";
-import WishListCard from "@/components/WishListCard";
 import ComponentsGrid from "@/components/layouts/ComponentsGrid";
+import PageTitle from "@/components/layouts/PageTitle";
 import { ApiError } from "@/utils/errors/ApiError";
 import { notFound } from "next/navigation";
+
+import WishListCard from "./_components/WishListCard";
 
 export const revalidate = 0;
 

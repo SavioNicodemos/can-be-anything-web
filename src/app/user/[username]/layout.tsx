@@ -1,9 +1,9 @@
 import { ResponseDTO } from '@/@dtos/ResponseDTO';
 import { PublicUserDTO } from '@/@dtos/UserDTO';
 import api from '@/api';
-import ProfileHeader from '@/components/ProfileHeader';
 import { notFound } from 'next/navigation';
-import React from 'react'
+import React from 'react';
+import ProfileHeader from './_components/ProfileHeader';
 
 type Props = {
   children: React.ReactNode;
