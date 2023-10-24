@@ -1,8 +1,11 @@
-import { Logo } from '@/components/svgs/Logo'
-import Image from 'next/image'
-import Link from 'next/link'
+import { Logo } from '@/components/svgs/Logo';
+import { authOptions } from '@/providers/auth/authOptions';
+import { getServerSession } from 'next-auth';
+import Link from 'next/link';
+import UserDropdown from './UserDropdown';
 
-const Header = () => {
+const Header = async () => {
+  const session = await getServerSession(authOptions);
   return (
     <div className="p-3">
       <header className="navbar bg-base-300 rounded-xl">
@@ -39,28 +42,10 @@ const Header = () => {
         </div>
 
         <div className="navbar-end">
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 mask mask-squircle">
-                <Image
-                  alt="Avatar"
-                  height={70}
-                  width={70}
-                  src="http://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                />
-              </div>
-            </label>
-            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
-              </li>
-              <li><a>Settings</a></li>
-              <li><a>Logout</a></li>
-            </ul>
-          </div>
+          {session?.user?.name
+            ? <UserDropdown image={session.user?.image || null} />
+            : <Link href='/api/auth/signin'>Login</Link>
+          }
         </div>
       </header>
     </div>
