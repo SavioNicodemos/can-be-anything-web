@@ -52,8 +52,6 @@ export function LaravelAdapter(client = null, options = {}): Adapter {
         `/users/account/${provider}/${providerAccountId}`
       );
 
-      console.log(response.data.data);
-
       const newUser = convertUserEmail(response.data.data);
 
       return newUser;
