@@ -16,11 +16,13 @@ async function request(
 
   const response = await fetch(BASE_URL + cleanedUrl, {
     method,
-    body: JSON.stringify(body),
+    body: body ? JSON.stringify(body) : undefined,
     ...configs,
   });
 
-  const data = await response.json();
+  const data = await response.json().catch(() => {
+    return { message: 'Something went wrong, please try again later.' };
+  });
 
   if (!response.ok) throw new ApiError(data.message, response.status, data);
 

@@ -1,5 +1,4 @@
-import React from 'react'
-import Image from 'next/image'
+import Image from 'next/image';
 
 import { PublicUserDTO } from '@/@dtos/UserDTO';
 
@@ -12,7 +11,7 @@ const ProfileHeader = async ({ user }: Props) => {
     <div className="flex flex-col md:flex-row items-center p-4">
       <div className="w-full flex justify-center md:pr-8 md:justify-end">
         <Image
-          src={user.avatar || ''}
+          src={user.image || ''}
           alt="Profile Picture"
           height={128}
           width={128}
