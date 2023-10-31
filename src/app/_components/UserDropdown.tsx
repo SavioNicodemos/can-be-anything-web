@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import defaultAvatar from 'public/images/defaultAvatar.png';
 
 type Props = {
   image: string | null;
@@ -14,7 +15,7 @@ const UserDropdown = ({ image }: Props) => {
             alt="Avatar"
             height={70}
             width={70}
-            src={image || "http://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"}
+            src={image || defaultAvatar}
           />
         </div>
       </label>
