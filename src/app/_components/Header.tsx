@@ -34,17 +34,16 @@ const Header = async () => {
         </div>
 
         <div className="navbar-center">
-          <a className="btn btn-ghost normal-case text-xl flex flex-col">
-            Can Be
-            Anything
-          </a>
+          <Link href='/' className="btn btn-ghost normal-case text-xl flex flex-col">
+            Can Be Anything
+          </Link>
           <Logo height={40} width={40} />
         </div>
 
         <div className="navbar-end">
           {session?.user?.name
             ? <UserDropdown image={session.user?.image || null} />
-            : <Link href='/api/auth/signin'>Login</Link>
+            : <Link className='mx-4' href='/api/auth/signin'>Login</Link>
           }
         </div>
       </header>
