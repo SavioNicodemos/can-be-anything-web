@@ -1,6 +1,7 @@
 import { ProductDTO } from "@/@dtos/ProductDTO";
 import { PaginatedResponseDTO } from "@/@dtos/ResponseDTO";
 import api from "@/api";
+import { Pagination } from "@/components";
 import ComponentsGrid from "@/components/layouts/ComponentsGrid";
 import PageTitle from "@/components/layouts/PageTitle";
 import { NoGift } from "@/components/svgs/NoGift";
@@ -23,9 +24,10 @@ export const revalidate = 0;
 
 async function WishListProducts({ params, searchParams }: URLParams) {
   const { username, wishListSlug } = params;
+  const pageNumber = searchParams.page ? Number(searchParams.page) : 1;
 
   const response: PaginatedResponseDTO<ProductDTO> = await api.get(
-    `users/${username}/wish-lists/${wishListSlug}/products`
+    `users/${username}/wish-lists/${wishListSlug}/products?page=${pageNumber}`
   ).catch(e => {
     if (e instanceof ApiError) {
       if (e.statusCode === 404) return notFound();
@@ -61,6 +63,8 @@ async function WishListProducts({ params, searchParams }: URLParams) {
           </>
         )}
       </ComponentsGrid>
+
+      <Pagination currentPage={pageNumber} itemCount={response.data.total} pageSize={response.data.per_page} />
     </>
   )
 };

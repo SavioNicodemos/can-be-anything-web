@@ -5,6 +5,7 @@ import PageTitle from "@/components/layouts/PageTitle";
 import { ApiError } from "@/utils/errors/ApiError";
 import { notFound } from "next/navigation";
 
+import { Pagination } from "@/components";
 import WishListCard from "./_components/WishListCard";
 
 export const revalidate = 0;
@@ -58,17 +59,7 @@ async function UserProfile({ params, searchParams }: URLParams) {
         ))}
       </ComponentsGrid>
 
-      <div className="join pt-4 pb-4">
-        {response.data.links.filter(el => !isNaN(Number(el.label))).map((link) => (
-          <a
-            key={link.label}
-            href={`/user/${userName}?page=${link.label}`}
-            className={`join-item btn ${!link.url && 'btn-disabled'} ${link.active && 'btn-active'}`}
-          >
-            {link.label}
-          </a>
-        ))}
-      </div>
+      <Pagination currentPage={pageNumber} itemCount={response.data.total} pageSize={response.data.per_page} />
     </div>
   )
 };
