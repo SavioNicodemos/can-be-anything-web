@@ -88,6 +88,8 @@ export function LaravelAdapter(client = null, options = {}): Adapter {
 
       const { user, session } = response.data.data;
 
+      if (!user || !session) return null;
+
       const newUser = convertUserEmail(user);
 
       const newSession = {
