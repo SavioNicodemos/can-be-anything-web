@@ -6,7 +6,9 @@ import {
   VerificationTokenDTO,
 } from '@/@dtos/UserDTO';
 import { axios } from '@/services/axios';
+import { encrypt } from '@/utils/crypt';
 import type { Adapter } from 'next-auth/adapters';
+import { decode } from 'next-auth/jwt';
 
 type SessionAndUser = {
   user: PrivateUserDTO;
@@ -82,6 +84,27 @@ export function LaravelAdapter(client = null, options = {}): Adapter {
     },
 
     async getSessionAndUser(sessionToken) {
+      console.log({ sessionToken });
+
+      const decoded = await decode({
+        token: sessionToken,
+        secret: process.env.NEXTAUTH_SECRET!,
+      });
+
+      console.log(decoded);
+
+      if (decoded) {
+        const userData = {
+          userId: decoded.sub,
+          sessionToken,
+          expires: decoded.exp,
+        };
+        const encryptedToken = encrypt(JSON.stringify(userData));
+        if (!encryptedToken) throw new Error('Error encrypting token');
+        console.log({ encryptedToken });
+        sessionToken = encryptedToken;
+      }
+
       const response = await axios.get<ResponseDTO<SessionAndUser>>(
         `/sessions/${sessionToken}`
       );
